@@ -1,0 +1,22 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: rabe-ubi10-minimal
+  title: UBI10 Minimal
+  description: |
+    The RaBe Universal Base Image 10 Minimal is a stripped down image that
+    uses microdnf for package management. It has been configured to trust
+    the RaBe root CA and is ready to be used as a base image for images
+    that need a modern and compatible base image with lifecycle management
+    based on dependabot.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: radiorabe/container-image-ubi10-minimal
+  links:
+    - url: https://quay.io/repository/almalinuxorg/10-minimal
+      title: AlmaLinux Universal Base Image 10 Minimal
+spec:
+  type: image
+  lifecycle: experimental
+  owner: it-reaktion

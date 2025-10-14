@@ -1,0 +1,51 @@
+name: Publish Container Images
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+
+jobs:
+  call-workflow:
+    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.37.0
+    with:
+      image: 'ghcr.io/radiorabe/ubi10-minimal'
+      name: 'ubi10-minimal'
+      display-name: 'RaBe Universal Base Image 10 Minimal'
+      tags: 'minimal rhel10 el10 rabe'
+      # disabled because base images are verified via docker content trust
+      cosign-verify: false
+      # base images are multi-platform for developer convenience
+      platforms: linux/amd64,linux/arm64
+      docker-daemon-config: |
+        {
+          "features": {
+            "containerd-snapshotter": true
+          }
+        }
+  mkdocs:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: none
+      checks: none
+      contents: write # for pushing gh-pages branch
+      deployments: none
+      issues: none
+      packages: none
+      pull-requests: none
+      repository-projects: none
+      security-events: none
+      statuses: none
+      id-token: none
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - run: pip install mkdocs mkdocs-material mkdocs-gen-files mkdocs-literate-nav mkdocs-section-index
+      - run: mkdocs build
+      - run: mkdocs gh-deploy
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
