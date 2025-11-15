@@ -18,14 +18,17 @@ Create a downstream image from `ghcr.io/radiorabe/ubi10-minimal`. Replace `:late
 ```Dockerfile
 FROM ghcr.io/radiorabe/ubi10-minimal:latest
 
-RUN    microdnf install -y \
-         shadow-utils \
-    && microdnf clean all \
-    && useradd -u 1001 -r -g 0 -s /sbin/nologin \
-         -c "Default Application User" default \
-    && microdnf remove -y \
+RUN <<-EOR
+    set -xe
+    microdnf install -y \
+         shadow-utils
+    microdnf clean all
+    useradd -u 1001 -r -g 0 -s /sbin/nologin \
+         -c "Default Application User" default
+    microdnf remove -y \
          libsemanage \
          shadow-utils
+EOR
          
 USER 1001
 ```
