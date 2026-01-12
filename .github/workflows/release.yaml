@@ -10,7 +10,7 @@ on:
 
 jobs:
   call-workflow:
-    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.38.3
+    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.39.0
     with:
       image: 'ghcr.io/radiorabe/ubi10-minimal'
       name: 'ubi10-minimal'
