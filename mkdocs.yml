@@ -1,4 +1,5 @@
 site_name: RaBe Universal Base Image 10 Minimal
+site_url: https://radiorabe.github.io/container-image-ubi10-minimal/
 repo_url: https://github.com/radiorabe/container-image-ubi10-minimal
 repo_name: radiorabe/container-image-ubi10-minimal
 
@@ -40,9 +41,21 @@ plugins:
     - docs/gen_ref_pages.py
 - literate-nav
 - section-index
+- llmstxt:
+    markdown_description: |
+      The RaBe Universal Base Image 10 Minimal is a stripped-down container base image
+      built on AlmaLinux 10 UBI10 minimal. It pre-installs the RaBe Root CA trust anchor
+      so that downstream images inherit it automatically. Use it as a FROM base for any
+      RaBe container image that needs a modern, lifecycle-managed EL10 foundation.
+    sections:
+      Documentation:
+        - index.md
+      Monitoring:
+        - monitoring.md
 
 nav:
   - README: index.md
+  - Monitoring: monitoring.md
 
 watch:
   - README.md
