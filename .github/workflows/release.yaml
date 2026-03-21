@@ -17,7 +17,7 @@ jobs:
       packages: write
       security-events: write
       id-token: write
-    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.41.1
+    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.41.3
     with:
       image: 'ghcr.io/radiorabe/ubi10-minimal'
       name: 'ubi10-minimal'
