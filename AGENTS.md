@@ -21,7 +21,6 @@ docs/
   monitoring.md             # Monitoring guidance; references rabe-zabbix templates
   css/
     style.css               # Custom MkDocs theme overrides
-  AGENTS.md                 # Agent instructions for the docs/ directory
 mkdocs.yml                  # MkDocs configuration (includes llmstxt plugin)
 catalog-info.yaml           # Backstage component descriptor
 .github/
