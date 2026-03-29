@@ -28,6 +28,7 @@ jobs:
         echo "Hellow world!"
       # disabled because base images are verified via docker content trust
       # test: cosign-verify: false
+      cosign-base-image-only: true
       # base images are multi-platform for developer convenience
       platforms: linux/amd64,linux/arm64
       docker-daemon-config: |
