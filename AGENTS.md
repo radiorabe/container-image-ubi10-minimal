@@ -19,8 +19,11 @@ rabe/
 docs/
   gen_ref_pages.py          # Copies README.md → docs/index.md at MkDocs build time
   monitoring.md             # Monitoring guidance; references rabe-zabbix templates
+  upgrading.md              # Migration guides from UBI8 and UBI9 to UBI10
+  downstream.md             # How downstream repos should align with this base image
   css/
     style.css               # Custom MkDocs theme overrides
+  AGENTS.md                 # Agent instructions for the docs/ directory
 mkdocs.yml                  # MkDocs configuration (includes llmstxt plugin)
 catalog-info.yaml           # Backstage component descriptor
 .github/
@@ -58,8 +61,8 @@ catalog-info.yaml           # Backstage component descriptor
 
 - `README.md` is the single source of truth for user-facing content. It is copied to
   `docs/index.md` at build time by `docs/gen_ref_pages.py`.
-- Additional pages (e.g. `monitoring.md`) live directly in `docs/` and must be registered
-  under `nav:` in `mkdocs.yml`.
+- Additional pages (e.g. `monitoring.md`, `upgrading.md`, `downstream.md`) live
+  directly in `docs/` and must be registered under `nav:` in `mkdocs.yml`.
 - The `llmstxt` plugin auto-generates `/llms.txt` from the pages listed in its `sections:`
   config. Add new pages there when they contain content useful for LLMs.
 

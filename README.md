@@ -74,11 +74,20 @@ No specialized downstream images are published at this time. If you need a tailo
 
 > :information_source: We maintain a collection of downstream images in the `ghcr.io/radiorabe/` registry (e.g., application runtimes and tooling images). We plan to update the collection to use UBI10-based images like this one over time.
 
+See the [Downstream Image Alignment](docs/downstream.md) page for guidance on how to align a downstream repository with the conventions used here.
+
+## Upgrading
+
+Migrating from an older RaBe base image? See the [Upgrading](docs/upgrading.md) page for step-by-step guides:
+
+- [From UBI9 Minimal](docs/upgrading.md#from-ubi9-minimal)
+- [From UBI8 Minimal](docs/upgrading.md#from-ubi8-minimal)
+
 ## Monitoring
 
 This image does not ship a monitoring agent by default. If you run containers based on this image in an environment monitored with [Zabbix](https://www.zabbix.com/), you can use the templates maintained in [radiorabe/rabe-zabbix](https://github.com/radiorabe/rabe-zabbix).
 
-See [docs/monitoring.md](docs/monitoring.md) for details.
+See the [Monitoring](docs/monitoring.md) page for details.
 
 ## Advanced Usage
 

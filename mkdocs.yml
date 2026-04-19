@@ -52,10 +52,16 @@ plugins:
         - index.md
       Monitoring:
         - monitoring.md
+      Upgrading:
+        - upgrading.md
+      Downstream:
+        - downstream.md
 
 nav:
   - README: index.md
   - Monitoring: monitoring.md
+  - Upgrading: upgrading.md
+  - Downstream Image Alignment: downstream.md
 
 watch:
   - README.md
