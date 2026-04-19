@@ -128,26 +128,43 @@ Follow the same three-workflow layout:
 
 ### Use reusable workflows from `radiorabe/actions`
 
-Delegate to the shared reusable workflows pinned to a released version tag:
+Delegate to the shared reusable workflows, pinned to a released version tag. A minimal
+`release.yaml` that builds the container image and deploys documentation looks like:
 
 ```yaml
-uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.0.0
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions: {}
+
+jobs:
+  container:
+    permissions:
+      contents: read
+      packages: write
+      security-events: write
+      id-token: write
+    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.0.0
+    with:
+      image: 'ghcr.io/radiorabe/<your-image>'
+      name: '<your-image>'
+
+  release-mkdocs:
+    permissions:
+      contents: write
+    uses: radiorabe/actions/.github/workflows/release-mkdocs.yaml@v0.0.0
 ```
 
-Dependabot keeps version tags up-to-date automatically — do not pin to `@main` or `@latest`.
+Replace `v0.0.0` with the current release tag. Dependabot keeps these up-to-date
+automatically — do not pin to `@main` or `@latest`.
 
-### MkDocs deploy
-
-Install `mkdocs-llmstxt` in the `mkdocs` job alongside the other pip dependencies and
-run `mkdocs build` on every PR (to validate) and `mkdocs gh-deploy` on pushes to
-`main` (to publish):
-
-```yaml
-- run: pip install mkdocs-material mkdocs-gen-files mkdocs-literate-nav mkdocs-section-index mkdocs-llmstxt
-- run: mkdocs build
-- run: mkdocs gh-deploy
-  if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-```
+See the [radiorabe/actions workflow docs](https://radiorabe.github.io/actions/) for the full
+input and permission reference for each reusable workflow.
 
 ## See Also
 
