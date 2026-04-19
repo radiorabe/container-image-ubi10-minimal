@@ -17,10 +17,12 @@ Dockerfile                  # Single-stage image definition; installs CA trust a
 rabe/
   rabe-ca.crt               # RaBe Root CA certificate (copied into the image)
 docs/
-  gen_ref_pages.py          # Copies README.md → docs/index.md at MkDocs build time
+  index.md                  # Home page (template only — content lives in overrides/home.html)
   monitoring.md             # Monitoring guidance; references rabe-zabbix templates
   upgrading.md              # Migration guides from UBI8 and UBI9 to UBI10
   downstream.md             # How downstream repos should align with this base image
+  overrides/
+    home.html               # Custom home page template (hero + features grid)
   css/
     style.css               # Custom MkDocs theme overrides
   AGENTS.md                 # Agent instructions for the docs/ directory
@@ -59,10 +61,12 @@ catalog-info.yaml           # Backstage component descriptor
 
 ### Documentation (`docs/`)
 
-- `README.md` is the single source of truth for user-facing content. It is copied to
-  `docs/index.md` at build time by `docs/gen_ref_pages.py`.
-- Additional pages (e.g. `monitoring.md`, `upgrading.md`, `downstream.md`) live
-  directly in `docs/` and must be registered under `nav:` in `mkdocs.yml`.
+- `docs/index.md` contains only YAML front matter (`template: home.html`). All visible
+  home page content lives in `docs/overrides/home.html` (hero section + features grid).
+- `README.md` at the repository root is for GitHub display only and is not part of the
+  docs site.
+- Content pages (`monitoring.md`, `upgrading.md`, `downstream.md`) live directly in
+  `docs/` and must be registered under `nav:` in `mkdocs.yml`.
 - The `llmstxt` plugin auto-generates `/llms.txt` from the pages listed in its `sections:`
   config. Add new pages there when they contain content useful for LLMs.
 
@@ -113,7 +117,7 @@ podman build -t ubi10-minimal:local .
 
 # Preview the documentation
 python3 -m venv .venv
-.venv/bin/pip install mkdocs-material mkdocs-gen-files mkdocs-literate-nav mkdocs-section-index mkdocs-llmstxt
+.venv/bin/pip install mkdocs-material mkdocs-section-index mkdocs-llmstxt
 .venv/bin/mkdocs serve
 ```
 

@@ -110,7 +110,7 @@ Install the plugin alongside the other MkDocs dependencies:
 
 ```bash
 python3 -m venv .venv
-.venv/bin/pip install mkdocs-material mkdocs-gen-files mkdocs-literate-nav mkdocs-section-index mkdocs-llmstxt
+.venv/bin/pip install mkdocs-material mkdocs-section-index mkdocs-llmstxt
 .venv/bin/mkdocs serve
 ```
 

@@ -14,16 +14,16 @@ to related monitoring resources in [rabe-zabbix](https://github.com/radiorabe/ra
 
 ```
 docs/
-  gen_ref_pages.py    # Copies README.md → index.md at MkDocs build time (do not edit index.md directly)
+  index.md            # Home page (template only — edit home.html, not this file)
   monitoring.md       # Monitoring guidance; references rabe-zabbix Zabbix templates
   upgrading.md        # Migration guides from UBI8 and UBI9 to UBI10
   downstream.md       # How downstream repos should align with this base image
+  overrides/
+    home.html         # Custom home page template (hero + features grid)
   css/
-    style.css         # Custom theme overrides
+    style.css         # Custom theme overrides (brand colours + hero/feature styles)
   AGENTS.md           # This file
 ```
-
-`index.md` is generated at build time — edit `README.md` in the repository root instead.
 
 ## Page Structure
 
@@ -36,8 +36,11 @@ Every documentation page must contain these sections in order:
 
 ## Key Conventions
 
-- **Single source of truth**: User-facing content lives in `README.md`. The generator
-  script copies it to `index.md`. Never edit `index.md` directly.
+- **Home page**: `docs/index.md` contains only YAML front matter (`template: home.html`).
+  All visible content on the home page lives in `docs/overrides/home.html`. Edit that
+  file to change the hero text or feature cards.
+- **Content pages**: All other `.md` files are standard MkDocs pages. `README.md` at the
+  repository root is for GitHub display only and is not part of the docs site.
 - **Code blocks**: Use fenced code blocks with a language identifier. For Dockerfile
   snippets, use ` ```dockerfile `.
 - **External links**: Prefer linking to official upstream documentation rather than
@@ -53,7 +56,7 @@ After adding a new page:
 
 ```bash
 python3 -m venv .venv
-.venv/bin/pip install mkdocs-material mkdocs-gen-files mkdocs-literate-nav mkdocs-section-index mkdocs-llmstxt
+.venv/bin/pip install mkdocs-material mkdocs-section-index mkdocs-llmstxt
 .venv/bin/mkdocs serve
 ```
 
