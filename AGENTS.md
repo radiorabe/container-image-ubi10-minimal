@@ -108,12 +108,13 @@ do not pin to `@main` or `@latest`.
 There is no automated test suite for the image itself. Validate changes by:
 
 ```bash
-# Build the image locally
-docker build -t ubi10-minimal:local .
+# Build the image locally (prefer podman; docker also works)
+podman build -t ubi10-minimal:local .
 
 # Preview the documentation
-pip install mkdocs mkdocs-material mkdocs-gen-files mkdocs-literate-nav mkdocs-section-index mkdocs-llmstxt
-mkdocs serve
+python3 -m venv .venv
+.venv/bin/pip install mkdocs-material mkdocs-gen-files mkdocs-literate-nav mkdocs-section-index mkdocs-llmstxt
+.venv/bin/mkdocs serve
 ```
 
 The CI pipeline builds the image on every PR via the `release-container` reusable workflow,

@@ -34,7 +34,7 @@ podman build --no-cache -t test-ubi10-migration .
 ```
 
 If `microdnf` reports a package as unavailable, check whether it has been renamed or
-split upstream (e.g. search `https://packages.almalinux.org/`).
+split upstream (e.g. search `https://pkgs.org/`).
 
 ### 3. No other Dockerfile changes required
 
@@ -64,7 +64,7 @@ The preferred style since UBI9 is a single `RUN <<-EOR … EOR` heredoc per logi
 group of commands. This keeps the layer count low, makes diffs cleaner, and avoids
 shell-escaping issues with `&&`-chained commands.
 
-**Before (UBI8 style):**
+**Before (UBI8/UBI9 legacy style):**
 
 ```dockerfile
 RUN microdnf install -y \
@@ -101,7 +101,7 @@ Key improvements in the heredoc style:
 
 ### 3. Apply the same heredoc pattern to `EPEL` and `chmod` blocks
 
-**Before (UBI8 style):**
+**Before (UBI8/UBI9 legacy style):**
 
 ```dockerfile
 RUN    microdnf install -y epel-release \

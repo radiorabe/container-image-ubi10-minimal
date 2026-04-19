@@ -109,7 +109,9 @@ plugins:
 Install the plugin alongside the other MkDocs dependencies:
 
 ```bash
-pip install mkdocs mkdocs-material mkdocs-gen-files mkdocs-literate-nav mkdocs-section-index mkdocs-llmstxt
+python3 -m venv .venv
+.venv/bin/pip install mkdocs-material mkdocs-gen-files mkdocs-literate-nav mkdocs-section-index mkdocs-llmstxt
+.venv/bin/mkdocs serve
 ```
 
 ## CI/CD Conventions
@@ -141,7 +143,7 @@ run `mkdocs build` on every PR (to validate) and `mkdocs gh-deploy` on pushes to
 `main` (to publish):
 
 ```yaml
-- run: pip install mkdocs mkdocs-material mkdocs-gen-files mkdocs-literate-nav mkdocs-section-index mkdocs-llmstxt
+- run: pip install mkdocs-material mkdocs-gen-files mkdocs-literate-nav mkdocs-section-index mkdocs-llmstxt
 - run: mkdocs build
 - run: mkdocs gh-deploy
   if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
