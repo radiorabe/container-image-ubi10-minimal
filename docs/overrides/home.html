@@ -1,0 +1,97 @@
+{% extends "main.html" %}
+
+{% block tabs %}
+  {{ super() }}
+
+  <section class="tx-hero">
+    <div class="md-grid md-typeset">
+      <div class="tx-hero__content">
+        <h1>🐧 RaBe UBI10 Minimal</h1>
+        <p>
+          Stripped-down AlmaLinux 10 base image with the RaBe Root CA pre-installed.<br>
+          Drop it into any downstream <code>Dockerfile</code> as a secure,
+          lifecycle-managed EL10 foundation.
+        </p>
+        <a
+          href="{{ 'upgrading/' | url }}"
+          title="Upgrading Guide"
+          class="md-button md-button--primary"
+        >
+          Upgrading Guide
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="vertical-align:middle;margin-left:.4em"><path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>
+        </a>
+        <a
+          href="{{ 'downstream/' | url }}"
+          title="Downstream Alignment"
+          class="md-button"
+        >
+          Downstream Alignment
+        </a>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block content %}
+  <section class="tx-features">
+    <div class="md-grid">
+      <div class="tx-features__grid md-typeset">
+
+        <div class="tx-feature">
+          <div class="tx-feature__icon">🐧</div>
+          <h2>AlmaLinux 10 Foundation</h2>
+          <p>
+            Built on <strong>AlmaLinux 10 UBI10 minimal</strong> for a modern,
+            long-supported EL10 base with a small attack surface.
+          </p>
+        </div>
+
+        <div class="tx-feature">
+          <div class="tx-feature__icon">🔐</div>
+          <h2>RaBe Root CA</h2>
+          <p>
+            Trust anchor pre-installed — downstream images inherit it
+            automatically without any extra setup.
+          </p>
+        </div>
+
+        <div class="tx-feature">
+          <div class="tx-feature__icon">📦</div>
+          <h2>microdnf</h2>
+          <p>
+            Lightweight package management without the <code>dnf</code>/<code>yum</code>
+            overhead. Install only what your image needs.
+          </p>
+        </div>
+
+        <div class="tx-feature">
+          <div class="tx-feature__icon">🏗️</div>
+          <h2>Multi-platform</h2>
+          <p>
+            Published for both <code>linux/amd64</code> and
+            <code>linux/arm64</code> for developer convenience.
+          </p>
+        </div>
+
+        <div class="tx-feature">
+          <div class="tx-feature__icon">🔏</div>
+          <h2>Signed &amp; Attested</h2>
+          <p>
+            Keyless <strong>cosign</strong> signatures and CycloneDX SBOM
+            attestations attached to every released tag.
+          </p>
+        </div>
+
+        <div class="tx-feature">
+          <div class="tx-feature__icon">🔄</div>
+          <h2>Kept Up-to-date</h2>
+          <p>
+            Daily <strong>Trivy</strong> scans, automated Dependabot updates,
+            and go-semantic-release keep the image fresh.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+{% endblock %}
