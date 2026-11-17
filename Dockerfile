@@ -1,4 +1,4 @@
-FROM ghcr.io/almalinux/10-minimal:10.2-20261114@sha256:59186585abee4673468ea8c7167917c76fa7e751206f4903a856d8a23cc3ed5f
+FROM ghcr.io/almalinux/10-minimal:10.3-20261116@sha256:37494fde965664316a6ce8579baec3bd9830ce150278ac1d39a94a06fbd35243
 
 LABEL maintainer="Radio Bern RaBe"
 
